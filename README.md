@@ -2,7 +2,8 @@
 <div align='center'>
     <img src='./Capa.jpg' width='800px'>
 </div>
-# 👨🏽‍💻 Stack
+
+## 👨🏽‍💻 Stack
 
 - [x] ReactNative
 - [x] Typescript

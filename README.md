@@ -2,6 +2,7 @@
 <div align='center'>
     <img src='./Capa.jpg' width='800px'>
 </div>
+
 ## 👨🏽‍💻 Stack
 
 - [x] ReactNative

@@ -1,14 +1,23 @@
-import { Header } from '@components/Header'
-import { Container } from './styles'
+import { useNavigation } from '@react-navigation/native'
+import { FlatList } from 'react-native'
 import { useState } from 'react'
+
 import { Highlight } from '@components/Highlight'
 import { GroupCard } from '@components/GroupCard'
-import { FlatList } from 'react-native'
 import { ListyEmpty } from '@components/ListEmpty'
+import { Header } from '@components/Header'
 import { Button } from '@components/Button'
+
+import { Container } from './styles'
 
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([])
+
+  const navigation = useNavigation()
+
+  function handleNewGroup() {
+    navigation.navigate('new')
+  }
 
   return (
     <Container>
@@ -24,9 +33,10 @@ export function Groups() {
         ListEmptyComponent={() => (
           <ListyEmpty message="Que tal cadastrar a primeira turma?" />
         )}
+        showsVerticalScrollIndicator={false}
       />
 
-      <Button title="Criar nova turma" />
+      <Button title="Criar nova turma" onPress={handleNewGroup} />
     </Container>
   )
 }

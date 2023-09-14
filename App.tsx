@@ -9,16 +9,16 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 
-import { Loading } from '@components/Loading'
-import { Players } from '@screens/Players'
 import theme from './src/theme'
+import { Loading } from '@components/Loading'
+import { Routes } from './src/routes'
 
 export default function App() {
   const [fontLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold })
 
   return (
     <ThemeProvider theme={theme}>
-      {fontLoaded ? <Players /> : <Loading />}
+      {fontLoaded ? <Routes /> : <Loading />}
       <StatusBar
         backgroundColor="transparent"
         barStyle={'light-content'}

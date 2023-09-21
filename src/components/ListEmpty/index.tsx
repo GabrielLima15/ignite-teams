@@ -6,9 +6,9 @@ type Props = {
 }
 
 export function ListyEmpty({ message }: Props) {
-  return (
-    <Container>
-      <Message>{message}</Message>
-    </Container>
-  )
+	return (
+		<Container>
+			<Message>{message}</Message>
+		</Container>
+	)
 }

@@ -18,56 +18,69 @@ type RouteParams = {
 }
 
 export function Players() {
-  const [team, setTeam] = useState('Time A')
-  const [players, setPlayers] = useState([])
+	const [team, setTeam] = useState('Time A')
+	const [players] = useState([])
 
-  const route = useRoute()
-  const { group } = route.params as RouteParams
+	const route = useRoute()
+	const { group } = route.params as RouteParams
 
-  return (
-    <Container>
-      <Header showBackButton />
+	return (
+		<Container>
+			<Header showBackButton />
 
-      <Highlight title={group} subtitle="Adicione a galera e separe os times" />
+			<Highlight 
+				title={group} 
+				subtitle="Adicione a galera e separe os times" 
+			/>
 
-      <Form>
-        <Input placeholder="Nome da pessoa" autoCorrect={false} />
-        <ButtonIcon icon="add" />
-      </Form>
+			<Form>
+				<Input 
+					placeholder="Nome da pessoa" 
+					autoCorrect={false} 
+				/>
 
-      <HeaderList>
-        <FlatList
-          data={['Time A', 'Time B']}
-          keyExtractor={(item) => item}
-          renderItem={({ item }) => (
-            <Filter
-              title={item}
-              isActive={item === team}
-              onPress={() => setTeam(item)}
-            />
-          )}
-          horizontal
-        />
-        <NumberOfPlayers>{players.length}</NumberOfPlayers>
-      </HeaderList>
-      <FlatList
-        data={players}
-        keyExtractor={(item) => item}
-        renderItem={({ item }) => (
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
-          <PlayerCard name={item} onRemove={() => {}} />
-        )}
-        ListEmptyComponent={() => (
-          <ListyEmpty message="Não há pessoas nesse time" />
-        )}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={[
-          { paddingBottom: 100 },
-          players.length === 0 && { flex: 1 },
-        ]}
-      />
+				<ButtonIcon 
+					icon="add" 
+				/>
 
-      <Button title="Remover Turma" type="SECONDARY" />
-    </Container>
-  )
+			</Form>
+
+			<HeaderList>
+				<FlatList
+					data={['Time A', 'Time B']}
+					keyExtractor={(item) => item}
+					renderItem={({ item }) => (
+						<Filter
+							title={item}
+							isActive={item === team}
+							onPress={() => setTeam(item)}
+						/>
+					)}
+					horizontal
+				/>
+				<NumberOfPlayers>
+					{players.length}
+				</NumberOfPlayers>
+
+			</HeaderList>
+			<FlatList
+				data={players}
+				keyExtractor={(item) => item}
+				renderItem={({ item }) => (
+					// eslint-disable-next-line @typescript-eslint/no-empty-function
+					<PlayerCard name={item} onRemove={() => {}} />
+				)}
+				ListEmptyComponent={() => (
+					<ListyEmpty message="Não há pessoas nesse time" />
+				)}
+				showsVerticalScrollIndicator={false}
+				contentContainerStyle={[
+					{ paddingBottom: 100 },
+					players.length === 0 && { flex: 1 },
+				]}
+			/>
+
+			<Button title="Remover Turma" type="SECONDARY" />
+		</Container>
+	)
 }

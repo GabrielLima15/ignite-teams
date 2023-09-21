@@ -9,20 +9,20 @@ type Props = {
 }
 
 export function Header({ showBackButton = false }: Props) {
-  const navigation = useNavigation()
+	const navigation = useNavigation()
 
-  function handleGoBack() {
-    navigation.navigate('groups')
-  }
+	function handleGoBack() {
+		navigation.navigate('groups')
+	}
 
-  return (
-    <Container>
-      {showBackButton && (
-        <BackButton onPress={handleGoBack}>
-          <BackIcon />
-        </BackButton>
-      )}
-      <Logo source={logoImg} />
-    </Container>
-  )
+	return (
+		<Container>
+			{showBackButton && (
+				<BackButton onPress={handleGoBack}>
+					<BackIcon />
+				</BackButton>
+			)}
+			<Logo source={logoImg} />
+		</Container>
+	)
 }

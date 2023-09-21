@@ -7,10 +7,10 @@ type Props = TouchableOpacityProps & {
 }
 
 export function GroupCard({ title, ...rest }: Props) {
-  return (
-    <Container {...rest}>
-      <Icon />
-      <Title>{title}</Title>
-    </Container>
-  )
+	return (
+		<Container {...rest}>
+			<Icon />
+			<Title>{title}</Title>
+		</Container>
+	)
 }

@@ -9,7 +9,6 @@ export async function groupsGetAll(){
 
 		return groups
 	} catch (error) {
-		console.error('Ocorreu um erro ao definir o item no AsyncStorage:', error)
 		throw error
 	}
 }

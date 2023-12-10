@@ -18,6 +18,7 @@ import { Highlight } from '@components/Highlight'
 import { ListyEmpty } from '@components/ListEmpty'
 import { ButtonIcon } from '@components/ButtonIcon'
 import { PlayerCard } from '@components/PlayerCard'
+import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup'
 
 type RouteParams = {
 	group: string
@@ -70,6 +71,16 @@ export function Players() {
 		}
 	}
 
+	async function handlePlayerRemove(playerName: string) {
+		try {
+			await playerRemoveByGroup(playerName, group)
+			fecthPlayersByTeam()
+		} catch (error) {
+			console.log(error)
+			Alert.alert('Remover Pessoa', 'Não foi possivel remover essa pessoa')
+		}
+	}
+
 	useEffect(() => {
 		fecthPlayersByTeam()
 	}, [team])
@@ -90,6 +101,8 @@ export function Players() {
 					placeholder="Nome da pessoa"
 					onChangeText={setNewPlayerName}
 					inputRef={newPlayerNameInputRef}
+					onSubmitEditing={handleAddPlayer}
+					returnKeyType="done"
 				/>
 
 				<ButtonIcon
@@ -121,7 +134,7 @@ export function Players() {
 				data={players}
 				keyExtractor={(item) => item.name}
 				renderItem={({ item }) => (
-					<PlayerCard name={item.name} onRemove={() => { }} />
+					<PlayerCard name={item.name} onRemove={() => handlePlayerRemove(item.name)} />
 				)}
 				ListEmptyComponent={() => (
 					<ListyEmpty message="Não há pessoas nesse time" />
